@@ -1,4 +1,4 @@
-from.agenda import Agenda 
+from.agenda_v2 import Agenda 
 import pytest
 
 def test_agenda_vacia():
