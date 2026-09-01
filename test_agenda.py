@@ -1,4 +1,4 @@
-from.agenda_v2 import Agenda 
+from agenda_v2 import Agenda 
 import pytest
 
 def test_agenda_vacia():
@@ -8,7 +8,7 @@ def test_agenda_vacia():
 def test_agregar_y_contiene():
   agenda = Agenda()
   agenda.agregar("Lore", "3001234567")
-  assert agenda.contiene("Lore") is true 
+  assert agenda.contiene("Lore") is True 
 
 def test_telefono_de():
   agenda = Agenda()
