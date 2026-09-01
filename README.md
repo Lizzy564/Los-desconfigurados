@@ -1,5 +1,5 @@
 # **Agenda de contactos**
-Es una implementación de un TAD para administar contactos ordenados alfabéticamnete por nombre.
+Es una implementación de un TAD para administrar contactos ordenados alfabéticamnete por nombre.
 ---
 * Permite agregar, eliminar y consultar contactos, además de obtener sus nombres y teléfonos.
 * La búsqueda de contactos se realiza mediante búsqueda binaria.
