@@ -7,7 +7,7 @@
 |    10.000 |                  2,10 |               209,90 |                    8,60 |
 |   100.000 |                  2,50 |            12423,00 |                   51,40 |
 
-
+## Interpretación
 
 * Al pasar de 10.000 a 100.000 contactos, el tiempo de la búsqueda binaria se multiplicó por 1,19, lo cual era de esperar porque su crecimiento es logarítmico y el tiempo aumenta muy poco al aumentar el tamaño de la agenda.
 * Al pasar de 10.000 a 100.000 contactos, el tiempo de la búsqueda lineal se multiplicó por 59,18, lo cual era de esperar porque debe recorrer los contactos uno por uno y su tiempo aumenta con el tamaño de la agenda.
