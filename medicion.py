@@ -121,12 +121,12 @@ def main() -> None:
 
         print(f"  Búsqueda binaria: {tiempo_binario:.2f} µs")
         print(f"  Búsqueda lineal:  {tiempo_lineal:.2f} µs")
-        print(f"  Agregar + eliminar: {tiempo_agregar:.2f} µs")
+        print(f"  Agregar y eliminar: {tiempo_agregar:.2f} µs")
         print()
 
     print("TABLA DE RESULTADOS")
     print()
-    print("| Contactos  | Búsqueda binaria     | Búsqueda lineal     | Agregar + eliminar   |")
+    print("| Contactos  | Búsqueda binaria     | Búsqueda lineal     | Agregar y eliminar   |")
     print("|            | (µs)                 | (µs)                | (µs)                 |")
     print("+------------+----------------------+---------------------+----------------------+")
 
