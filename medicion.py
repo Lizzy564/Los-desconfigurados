@@ -1,7 +1,7 @@
 import random
 import string
 import time
-from agenda import Agenda
+from agenda_v2 import Agenda
 
 
 random.seed(11)
