@@ -57,7 +57,12 @@ class ArregloDinamico:
             intervalo = random.expovariate(1)
             tiempo_actual += intervalo
 
-            paciente = Paciente(1000000000 + i, random.randint(1, 100), random.randint(1, 5), tiempo_actual)
+            paciente = Paciente(
+                1000000000 + i, 
+                random.randint(1, 100), 
+                random.randint(1, 5), 
+                tiempo_actual
+            )
             self.insertar(paciente)
 
 
