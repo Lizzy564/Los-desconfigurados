@@ -76,3 +76,47 @@ arreglo_censo_5000.cargar_censo_desde_csv("Hito 1/censo_5000.csv")
 
 print("Pacientes cargados desde censo_5000.csv", arreglo_censo_5000.obtener(0).id)
 print("El ID del último paciente es: ", arreglo_censo_5000.obtener(4999).id)
+
+#Pruebas espeficas para pytest
+def test_arreglo_vacio():
+    arreglo = ArregloDinamico()
+    assert arreglo.longitud() == 0
+
+def test_un_solo_elemento():
+    arreglo = ArregloDinamico()
+    paciente = Paciente(1000000001, 25, 3, 2.45)
+    arreglo.insertar(paciente)
+    assert arreglo.longitud() == 1
+    assert arreglo.obtener(0).id == 1000000001
+
+def test_insercion_dispara_redimensionamiento():
+    arreglo = ArregloDinamico(2)
+
+    paciente1 = Paciente(1000000001, 25, 3, 2.45)
+    paciente2 = Paciente(1000000002, 30, 2, 3.10)
+    paciente3 = Paciente(1000000003, 10, 1, 4.20)
+
+    arreglo.insertar(paciente1)
+    arreglo.insertar(paciente2)
+
+    #la capacidad inicial es 2
+    #Al insertar el tercer paciente la capacidad debe duplicase a 4
+    arreglo.insertar(paciente3)
+
+    assert arreglo.capacidad == 4
+    assert arreglo.longitud() == 3
+    assert arreglo.obtener(2).id == 1000000003
+
+def test_eliminar_ultimo_elemento():
+    arreglo = ArregloDinamico()
+
+    paciente1 = Paciente(1000000001, 25, 3, 2.45)
+    paciente2 = Paciente(1000000002, 30, 2, 3.10)
+
+    arreglo.insertar(paciente1)
+    arreglo.insertar(paciente2)
+
+    arreglo.eliminar(1000000002)
+
+    assert arreglo.longitud() == 1
+    assert arreglo.obtener(0).id == 1000000001
