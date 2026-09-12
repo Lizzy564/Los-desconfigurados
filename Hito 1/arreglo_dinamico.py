@@ -52,31 +52,31 @@ class ArregloDinamico:
       self.datos[self.tamano -1] = None 
       self.tamano -= 1 
 
-   def generar_llegadas_poisson(self, n=5000):
-        tiempo_actual = 0
-        for i in range(n):
-            intervalo = random.expovariate(1)
-            tiempo_actual += intervalo
+  def generar_llegadas_poisson(self, n=5000):
+      tiempo_actual = 0
+      for i in range(n):
+          intervalo = random.expovariate(1)
+          tiempo_actual += intervalo
 
-            paciente = Paciente(
-                1000000000 + i, 
-                random.randint(1, 100), 
-                random.randint(1, 5), 
-                tiempo_actual
-            )
-            self.insertar(paciente)
+          paciente = Paciente(
+              1000000000 + i, 
+              random.randint(1, 100), 
+              random.randint(1, 5), 
+              tiempo_actual
+          )
+          self.insertar(paciente)
           
-    def cargar_censo_desde_csv(self, ruta)
-        with open(ruta, "r", newline="", encoding="utf-8") as archivo:
-            lector = csv.DictReader(archivo)
+  def cargar_censo_desde_csv(self, ruta):
+      with open(ruta, "r", newline="", encoding="utf-8") as archivo:
+          lector = csv.DictReader(archivo)
 
-            for fila in lector:
-                paciente = Paciente(
-                    int(fila["id"]), 
-                    int(fila["edad"]),
-                    int(fila["nivel_triage"]),
-                    float(fila["hora_llegada"])
-                )
-                self.insertar(paciente)
+          for fila in lector:
+              paciente = Paciente(
+                  int(fila["id"]), 
+                  int(fila["edad"]),
+                  int(fila["nivel_triage"]),
+                  float(fila["hora_llegada"])
+              )
+              self.insertar(paciente)
 
 
