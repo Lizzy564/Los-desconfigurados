@@ -51,6 +51,14 @@ class ArregloDinamico:
       self.datos[self.tamano -1] = None 
       self.tamano -= 1 
 
+   def generar_llegadas_poisson(self, n=5000):
+        tiempo_actual = 0
+        for i in range(n):
+            intervalo = random.expovariate(1)
+            tiempo_actual += intervalo
+
+            paciente = Paciente(1000000000 + i, random.randint(1, 100), random.randint(1, 5), tiempo_actual)
+            self.insertar(paciente)
 
 
 
