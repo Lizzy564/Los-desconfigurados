@@ -1,4 +1,5 @@
 import ctypes
+from paciente import Paciente
 
 class ArregloDinamico:
   def __init__(self, capacidad_inicial=10):
