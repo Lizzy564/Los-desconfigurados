@@ -16,7 +16,7 @@ class ArregloDinamico:
 
   def redimensionar(self):
     new_capacidad = self.capacidad * 2
-    new_datos = (ctypes.py_object * self.capacidad)()
+    new_datos = (ctypes.py_object * new_capacidad)()
     
     for i in range(self.tamano):
         new_datos[i] = self.datos[i]
@@ -25,7 +25,7 @@ class ArregloDinamico:
     self.capacidad = new_capacidad
 
   def obtener(self, indice):
-      if indice < o or indice >= self.tamano:
+      if indice < 0 or indice >= self.tamano:
           raise IndexError("Índice fuera de rango")
 
       return self.datos[indice]
