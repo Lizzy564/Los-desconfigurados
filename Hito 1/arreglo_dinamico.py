@@ -10,6 +10,7 @@ class ArregloDinamico:
   def insertar(self, paciente):
     if self.tamano == self.capacidad:
         self.redimensionar()
+      
     self.datos[self.tamano] = paciente 
     self.tamano += 1
 
