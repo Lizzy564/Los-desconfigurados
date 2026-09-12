@@ -8,7 +8,7 @@ class ArregloDinamico:
     self.datos = (ctypes.py_object * self.capacidad)()
 
   def insertar(self, paciente):
-    if sel.tamano == self.capacidad:
+    if self.tamano == self.capacidad:
         self.redimensionar()
     self.datos[self.tamano] = paciente 
     self.tamano += 1
