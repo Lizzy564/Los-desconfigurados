@@ -12,15 +12,19 @@ arreglo.insertar(paciente3)
 
 print("La capacidad del arreglo es: ", arreglo.capacidad)
 print("La cantidad de pacientes es: ", arreglo.longitud())
+
 print("El ID del primer paciente es: ", arreglo.obtener(0).id)
 print("El ID del segundo paciente es: ", arreglo.obtener(1).id)
 print("El ID del tercer paciente es: ", arreglo.obtener(2).id)
+
+print("\n")
 
 arreglo.eliminar(1202566655)
 print("La cantidad después de eliminar es: ", arreglo.longitud())
 print("El ID del primer paciente es: ", arreglo.obtener(0).id)
 print("El ID del segundo paciente es: ", arreglo.obtener(1).id)
 
+print("\n")
 
 arreglo_poisson = ArregloDinamico()
 arreglo_poisson.generar_llegadas_poisson(5)
