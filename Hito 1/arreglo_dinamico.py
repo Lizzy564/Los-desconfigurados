@@ -1,5 +1,6 @@
 import ctypes
 import random
+import csv
 from paciente import Paciente 
 
 class ArregloDinamico:
@@ -64,6 +65,18 @@ class ArregloDinamico:
                 tiempo_actual
             )
             self.insertar(paciente)
+          
+    def cargar_censo_desde_csv(self, ruta)
+        with open(ruta, "r", newline="", encoding="utf-8") as archivo:
+            lector = csv.DictReader(archivo)
 
+            for fila in lector:
+                paciente = Paciente(
+                    int(fila["id"]), 
+                    int(fila["edad"]),
+                    int(fila["nivel_triage"]),
+                    float(fila["hora_llegada"])
+                )
+                self.insertar(paciente)
 
 
