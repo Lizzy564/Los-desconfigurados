@@ -11,6 +11,7 @@ La complejidad de las operaciones principales establecidas son:
 
 ## Medición del tiempo de inserción 
 | Cantidad de pacientes | Tiempo de inserción (s) |
+|---:|---:|
 | 100 | 0.000248 |
 | 500 | 0.000483 |
 | 1.000 | 0.000839 |
