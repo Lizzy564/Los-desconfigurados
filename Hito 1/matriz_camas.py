@@ -1,12 +1,12 @@
 class matriz_camas:
     def __init__(self, n_turnos, n_camas):
         """
-        Crea una matriz con todas las camas estando libres
+        Crea una matriz con todas las camas estando libres.
         La matriz se organiza de la siguiente manera:
-        - Filas: turno
-        - Columnas: camas
+        - Filas: turno.
+        - Columnas: camas.
 
-        complejidad: O(n_turnos * n_camas)
+        Complejidad: O(n_turnos * n_camas).
         """
         if n_turnos <= 0 or n_camas <= 0:
             raise ValueError("El numero de turnos y camas deben ser mayores que 0")
@@ -17,9 +17,9 @@ class matriz_camas:
 
     def _validar_turno(self, turno):
         """
-        verifica que el indice del turno sea valido
+        Verifica que el indice del turno sea valido.
 
-        complejidad: O(1)
+        Complejidad: O(1).
         """
         if not isinstance(turno, int):
             raise TypeError("El turno debe ser un entero")
@@ -29,9 +29,9 @@ class matriz_camas:
 
     def _validar_cama(self, cama):
         """
-        verifica que el indice del turno sea valido
+        Verifica que el indice del turno sea valido.
 
-        complejidad: O(1)
+        Complejidad: O(1).
         """
         if not isinstance(cama, int):
             raise TypeError("La Cama debe ser un entero")
@@ -41,12 +41,12 @@ class matriz_camas:
         
     def ocupar(self, cama, turno)->None:
         """
-        Ocupar una cama en un turno determinado
-        Usa los condicionales de la funcion _validar_indices con los paramnetros
-        - cama: indice de la cama
-        -turno: indice del turno
+        Ocupar una cama en un turno determinado.
+        Usa los condicionales de la funcion _validar_indices con los paramnetros:
+        - Cama: indice de la cama.
+        - Turno: indice del turno.
 
-        complejidad: O(1)
+        Complejidad: O(1).
         """
         self._validar_turno(turno)
         self._validar_cama(cama)
@@ -57,12 +57,12 @@ class matriz_camas:
 
     def liberar(self, cama, turno)->None:
         """
-        libera una cama en un turno determinado
-        Usa los condicionales de la funcion _validar_indices con los paramnetros
-        - cama: indice de la cama
-        -turno: indice del turno
+        Libera una cama en un turno determinado.
+        Usa los condicionales de la funcion _validar_indices con los paramnetros:
+        - Cama: indice de la cama.
+        - Turno: indice del turno.
         
-        complejidad: O(1)
+        Complejidad: O(1).
         """
         self._validar_turno(turno)
         self._validar_cama(cama)
@@ -73,9 +73,9 @@ class matriz_camas:
 
     def consultar_disponibilidad(self, turno)->list:
         """
-        Devuelve una lista con los indices de la cama libres en el turno indicado
+        Devuelve una lista con los indices de la cama libres en el turno indicado.
 
-        complejidad: O(n_camas)
+        Complejidad: O(n_camas).
         """
         self._validar_turno(turno)
 
@@ -89,9 +89,11 @@ class matriz_camas:
 
     def reporte_ocupacion(self)-> dict:
         """
-        Para construir el resumen por turnos
+        Para construir el resumen por turnos.
 
-        O(n_turnos * n_camas): Obligatoriamete recorre toda la matriz
+        O(n_turnos * n_camas): Obligatoriamete recorre toda la matriz, debido a que tiene
+        un for que reccore turnos y otro for que recorre las camas. asi que por cada turno
+        revisa todas las camas.
         """
         reporte = []
         for turno in range(self.n_turnos):
