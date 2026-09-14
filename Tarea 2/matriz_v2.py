@@ -32,21 +32,21 @@ class Matriz:
         Complejidad: O(1)"""
         return self._columnas
     
-    def obtener(self, i: int, j: int):
+    def obtener(self, i: int, j: int) -> int:
         """Devuelve el valor de una celda de la matriz.
         Complejidad: O(1)"""
 
        posicion = self._posicion(i, j)
        return self._datos[posicion]
 
-    def asignar(self, i: int, j: int, valor):
+    def asignar(self, i: int, j: int, valor) -> None:
         """Asigna un valor a una celda de la matriz.
         Complejidad: O(1)"""
 
         posicion = self._posicion(i, j)
         self._datos[posicion] = valor
 
-    def suma(self):
+    def suma(self) -> int:
         """Suma todos los valores de la matriz.
         Complejidad: O(f · c)"""
 
