@@ -52,7 +52,7 @@ class Matriz:
 
         total = 0
 
-        for valor in self.datos:
+        for valor in self._datos:
             total += valor
         return total
 
