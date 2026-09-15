@@ -87,7 +87,7 @@ class matriz_camas:
 
         return disponibles
 
-    def reporte_ocupacion(self)-> dict:
+    def reporte_ocupacion(self)-> list:
         """
         Para construir el resumen por turnos.
 
