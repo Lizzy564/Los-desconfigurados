@@ -98,3 +98,13 @@ def ordenar_por_tiempo_espera(censo, hora_actual):
             return mergesort(censo, clave)
         else:
             return insertion_sort(censo, clave)
+
+"""Ordena el censo por ID"""
+def ordenar_por_id(censo):
+    def clave(paciente):
+        return paciente.id
+
+    if len(censo) > 30:
+        return mergesort(censo, clave)
+    else:
+        return insertion_sort(censo, clave)
