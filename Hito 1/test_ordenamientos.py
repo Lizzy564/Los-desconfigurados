@@ -59,3 +59,8 @@ def test_formato_pacientes():
     resultado = ordenar_por_triage_y_hora(censo)
     niveles = [paciente.nivel_triage for paciente in resultado]
     assert niveles == sorted(niveles)
+
+def test_ordena_por_id():
+    censo = [Paciente(30, 1, 2, 5.0), Paciente(10, 1, 2, 5.0), Paciente(20, 1, 2, 5.0)]
+    resultado = ordenar_por_id(censo)
+    assert [paciente.id for paciente in resultado] == [10, 20, 30]
