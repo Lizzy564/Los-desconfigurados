@@ -1,9 +1,7 @@
 from arreglo_dinamico import ArregloDinamico
 
 
-"""Dice que valor comparar
-
-Complejidad: O(n log n)"""
+"""Dice que valor comparar Complejidad: O(n log n)"""
 def mergesort(arreglo, clave):
     if arreglo.longitud() <= 1:
         return arreglo
@@ -25,9 +23,7 @@ def mergesort(arreglo, clave):
     return mezclar(izquierda, derecha, clave)
 
 
-"""Mezcla dos arreglos ordenados
-
-Complejidad: O(n)"""
+"""Mezcla dos arreglos ordenados Complejidad: O(n)"""
 def mezclar(izquierda, derecha, clave):
     resultado = ArregloDinamico()
 
@@ -53,9 +49,7 @@ def mezclar(izquierda, derecha, clave):
     return resultado
 
 
-"""Ordenamiento por inserción
-
-Complejidad: O(n²)"""
+"""Ordenamiento por inserción Complejidad: O(n²)"""
 def insertion_sort(arreglo, clave):
     resultado = ArregloDinamico()
 
@@ -84,9 +78,7 @@ NIVELES_TRIAGE = {
 }
 
 
-"""Convierte el nivel de triage a número
-
-Complejidad: O(1)"""
+"""Convierte el nivel de triage a número Complejidad: O(1)"""
 def nivel_a_numero(nivel):
     nivel = str(nivel).strip().upper()
 
@@ -96,18 +88,14 @@ def nivel_a_numero(nivel):
     return int(nivel)
 
 
-"""Convierte una hora a minutos
-
-Complejidad: O(1)"""
+"""Convierte una hora a minutos Complejidad: O(1)"""
 def hora_a_minutos(hora):
     horas, minutos = hora.strip().split(":")
 
     return int(horas) * 60 + int(minutos)
 
 
-"""Ordena por nivel de triage y hora de llegada
-
-Complejidad: O(n log n)"""
+"""Ordena por nivel de triage y hora de llegada Complejidad: O(n log n)"""
 def ordenar_por_triage_y_hora(censo):
     def clave(paciente):
         nivel = nivel_a_numero(paciente.nivel_triage)
@@ -119,9 +107,7 @@ def ordenar_por_triage_y_hora(censo):
     return insertion_sort(censo, clave)
 
 
-"""Ordena por tiempo de espera
-
-Complejidad: O(n log n)"""
+"""Ordena por tiempo de espera"""
 def ordenar_por_tiempo_espera(censo, hora_actual):
     def clave(paciente):
         tiempo_espera = hora_actual - paciente.hora_llegada
@@ -133,9 +119,7 @@ def ordenar_por_tiempo_espera(censo, hora_actual):
     return insertion_sort(censo, clave)
 
 
-"""Ordena por ID
-
-Complejidad: O(n log n)"""
+"""Ordena por ID"""
 def ordenar_por_id(censo):
     def clave(paciente):
         return paciente.id
