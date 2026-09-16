@@ -1,110 +1,146 @@
-#Algoritmo Mergesort
+from arreglo_dinamico import ArregloDinamico
 
 
 """Dice que valor comparar
+
 Complejidad: O(n log n)"""
-def mergesort(lista, clave):
-    if len(lista) <= 1:
-        return lista
+def mergesort(arreglo, clave):
+    if arreglo.longitud() <= 1:
+        return arreglo
 
-    medio = len(lista) // 2
-    izquierda = mergesort(lista[:medio], clave)
-    derecha = mergesort(lista[medio:], clave)
+    medio = arreglo.longitud() // 2
 
-    return mezclar(izquierda, derecha, clave) 
+    izquierda = ArregloDinamico()
+    derecha = ArregloDinamico()
 
-"""Une dos listas en una sola ordenada"""
+    for i in range(medio):
+        izquierda.insertar(arreglo.obtener(i))
 
+    for i in range(medio, arreglo.longitud()):
+        derecha.insertar(arreglo.obtener(i))
+
+    izquierda = mergesort(izquierda, clave)
+    derecha = mergesort(derecha, clave)
+
+    return mezclar(izquierda, derecha, clave)
+
+
+"""Mezcla dos arreglos ordenados
+
+Complejidad: O(n)"""
 def mezclar(izquierda, derecha, clave):
-    resultado =[]
+    resultado = ArregloDinamico()
+
     i = 0
     j = 0
 
-    while i < len(izquierda) and j < len(derecha):
-        if clave(izquierda[i]) <= clave(derecha[j]):
-            resultado.append(izquierda[i])
+    while i < izquierda.longitud() and j < derecha.longitud():
+        if clave(izquierda.obtener(i)) <= clave(derecha.obtener(j)):
+            resultado.insertar(izquierda.obtener(i))
             i += 1
         else:
-            resultado.append(derecha[j])
+            resultado.insertar(derecha.obtener(j))
             j += 1
 
-    # Agregar lo que sobro
-    while i < len(izquierda):
-        resultado.append(izquierda[i])
+    while i < izquierda.longitud():
+        resultado.insertar(izquierda.obtener(i))
         i += 1
-    while j < len(derecha):
-        resultado.append(derecha[j])
+
+    while j < derecha.longitud():
+        resultado.insertar(derecha.obtener(j))
         j += 1
 
     return resultado
 
-#Algoritmo InsertionSort
 
-"""Ordenar por inserción
-Complejidad: O(n) si ya está ordenado, O(n^2) si está desordenado"""
+"""Ordenamiento por inserción
 
-def insertion_sort(lista, clave):
-    lista = lista.copy()  # Crear una copia de la lista para no modificar la original
+Complejidad: O(n²)"""
+def insertion_sort(arreglo, clave):
+    resultado = ArregloDinamico()
 
-    for i in range(1, len(lista)):
-        elemento_actual = lista[i]
+    for i in range(arreglo.longitud()):
+        resultado.insertar(arreglo.obtener(i))
+
+    for i in range(1, resultado.longitud()):
+        elemento_actual = resultado.obtener(i)
         j = i - 1
 
-        while j >= 0 and clave(lista[j]) > clave(elemento_actual):
-            lista[j + 1] = lista[j]
+        while j >= 0 and clave(resultado.obtener(j)) > clave(elemento_actual):
+            resultado.datos[j + 1] = resultado.obtener(j)
             j -= 1
 
-        lista[j + 1] = elemento_actual
-    return lista
+        resultado.datos[j + 1] = elemento_actual
 
-#funciones para convertir triage y hora en valores comparables
+    return resultado
 
-NIVELES_TRIAGE = {"I": 1, "II": 2, "III": 3, "IV": 4, "V": 5}
 
-"""Convierte el nivel de triage a un valor numérico """
+NIVELES_TRIAGE = {
+    "I": 1,
+    "II": 2,
+    "III": 3,
+    "IV": 4,
+    "V": 5
+}
 
+
+"""Convierte el nivel de triage a número
+
+Complejidad: O(1)"""
 def nivel_a_numero(nivel):
     nivel = str(nivel).strip().upper()
 
     if nivel in NIVELES_TRIAGE:
         return NIVELES_TRIAGE[nivel]
-    return int(nivel)  # Si no es un nivel válido, intenta convertirlo a entero
 
-"""Convierte una hora en formato 'HH:MM' a minutos desde la medianoche."""
+    return int(nivel)
+
+
+"""Convierte una hora a minutos
+
+Complejidad: O(1)"""
 def hora_a_minutos(hora):
     horas, minutos = hora.strip().split(":")
+
     return int(horas) * 60 + int(minutos)
 
-#Funciones de la guia
-"""Ordena la lista de pacientes primero por nivel de triage y luego por hora de llegada."""
+
+"""Ordena por nivel de triage y hora de llegada
+
+Complejidad: O(n log n)"""
 def ordenar_por_triage_y_hora(censo):
     def clave(paciente):
         nivel = nivel_a_numero(paciente.nivel_triage)
-        return (nivel, paciente.hora_llegada)  
-    
+        return (nivel, paciente.hora_llegada)
 
-    if len(censo) > 30:
+    if censo.longitud() > 30:
         return mergesort(censo, clave)
-    else:
-        return insertion_sort(censo, clave)
-    
-"""Ordena el censo de mayor a menor tiempo de espera."""
+
+    return insertion_sort(censo, clave)
+
+
+"""Ordena por tiempo de espera
+
+Complejidad: O(n log n)"""
 def ordenar_por_tiempo_espera(censo, hora_actual):
-        def clave(paciente):
-            tiempo_espera = hora_actual - paciente.hora_llegada
-            return -tiempo_espera  # Se pone negativo para ordenar de mayor a menor
+    def clave(paciente):
+        tiempo_espera = hora_actual - paciente.hora_llegada
+        return -tiempo_espera
 
-        if len(censo) > 30:
-            return mergesort(censo, clave)
-        else:
-            return insertion_sort(censo, clave)
+    if censo.longitud() > 30:
+        return mergesort(censo, clave)
 
-"""Ordena el censo por ID"""
+    return insertion_sort(censo, clave)
+
+
+"""Ordena por ID
+
+Complejidad: O(n log n)"""
 def ordenar_por_id(censo):
     def clave(paciente):
         return paciente.id
 
-    if len(censo) > 30:
+    if censo.longitud() > 30:
         return mergesort(censo, clave)
-    else:
-        return insertion_sort(censo, clave)
+
+    return insertion_sort(censo, clave)
