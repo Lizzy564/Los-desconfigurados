@@ -89,11 +89,9 @@ class matriz_camas:
 
     def reporte_ocupacion(self)-> list:
         """
-        Para construir el resumen por turnos.
+        Para construir el resumen de la ocupación de las camas durante todos los turnos.
 
-        O(n_turnos * n_camas): Obligatoriamete recorre toda la matriz, debido a que tiene
-        un for que reccore turnos y otro for que recorre las camas. asi que por cada turno
-        revisa todas las camas.
+        Complejidad: O(n_turnos * n_camas).
         """
         reporte = []
         for turno in range(self.n_turnos):
@@ -111,7 +109,17 @@ class matriz_camas:
         return reporte
 
     def __repr__(self):
+        """
+        Determina como se representa el objeto cuando se muestre directamente.
+
+        Complejidad: O(n_turnos * n_camas).
+        """
         return repr(self._matriz)
 
 def crear_matriz(n_turnos, n_camas):
+    """ 
+    Es una función auxiliar que crea y devuelve una insatncia de matriz_camas.
+
+    Complejidad: O(n_turnos * n_camas).
+    """
     return matriz_camas(n_turnos, n_camas)
