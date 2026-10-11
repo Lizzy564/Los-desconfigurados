@@ -62,7 +62,7 @@ def main():
         try:
             if opcion == "1":
                 id_buscado = int(input("ID a buscar: "))
-                paciente = buscar_binaria(
+                paciente = busqueda_binaria(
                     censo_por_id,
                     id_buscado
                 )
