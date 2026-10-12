@@ -2,88 +2,95 @@ import os
 import sys
 from collections import deque
 from timeit import default_timer
-
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from nucleo.lista_doble import ListaDoble
 
-TAMANOS = (1_000, 10_000, 50_000)
+TAMANOS = [1000, 10000, 50000]
 OPS = 200
 
 
 def eliminar_doble(n):
     lista = ListaDoble()
     nodos = [lista.insertar_final(i) for i in range(n)]
-    medio = nodos[n // 2: n // 2 + OPS]  # nodos ya conocidos (indice id -> nodo)
+    medio = nodos[n // 2:n // 2 + OPS]
 
     inicio = default_timer()
     for nodo in medio:
         lista.eliminar(nodo)
-    return (default_timer() - inicio) / OPS * 1e6  # microsegundos por operacion
+
+    return (default_timer() - inicio) / OPS * 1000000
 
 
 def eliminar_list(n):
-    datos = list(range(n))
-
+    lista = list(range(n))
     inicio = default_timer()
-    for _ in range(OPS):
-        datos.pop(len(datos) // 2)
-    return (default_timer() - inicio) / OPS * 1e6
+
+    for i in range(OPS):
+        lista.pop(len(lista) // 2)
+
+    return (default_timer() - inicio) / OPS * 1000000
 
 
 def eliminar_deque(n):
-    datos = deque(range(n))
-
+    lista = deque(range(n))
     inicio = default_timer()
-    for _ in range(OPS):
-        del datos[len(datos) // 2]
-    return (default_timer() - inicio) / OPS * 1e6
+
+    for i in range(OPS):
+        del lista[len(lista) // 2]
+
+    return (default_timer() - inicio) / OPS * 1000000
 
 
 def insertar_doble(n):
     lista = ListaDoble()
     nodos = [lista.insertar_final(i) for i in range(n)]
-    nodo_medio = nodos[n // 2]
-
+    medio = nodos[n // 2]
     inicio = default_timer()
+
     for i in range(OPS):
-        lista.insertar_despues(nodo_medio, i)
-    return (default_timer() - inicio) / OPS * 1e6
+        lista.insertar_despues(medio, i)
+
+    return (default_timer() - inicio) / OPS * 1000000
 
 
 def insertar_list(n):
-    datos = list(range(n))
-
+    lista = list(range(n))
     inicio = default_timer()
+
     for i in range(OPS):
-        datos.insert(len(datos) // 2, i)
-    return (default_timer() - inicio) / OPS * 1e6
+        lista.insert(len(lista) // 2, i)
+
+    return (default_timer() - inicio) / OPS * 1000000
 
 
 def insertar_deque(n):
-    datos = deque(range(n))
-
+    lista = deque(range(n))
     inicio = default_timer()
+
     for i in range(OPS):
-        datos.insert(len(datos) // 2, i)
-    return (default_timer() - inicio) / OPS * 1e6
+        lista.insert(len(lista) // 2, i)
 
+    return (default_timer() - inicio) / OPS * 1000000
 
-CASOS = {
-    "Eliminar en el medio": {"ListaDoble": eliminar_doble, "list": eliminar_list, "deque": eliminar_deque},
-    "Insertar en el medio": {"ListaDoble": insertar_doble, "list": insertar_list, "deque": insertar_deque},
-}
 
 if __name__ == "__main__":
     figura, ejes = plt.subplots(1, 2, figsize=(10, 4))
-    for eje, (titulo, estructuras) in zip(ejes, CASOS.items()):
-        for nombre, funcion in estructuras.items():
+
+    for eje, funciones, titulo in [
+        (ejes[0], [eliminar_doble, eliminar_list, eliminar_deque], "Eliminar"),
+        (ejes[1], [insertar_doble, insertar_list, insertar_deque], "Insertar")
+    ]:
+        for nombre, funcion in zip(["ListaDoble", "list", "deque"], funciones):
             tiempos = [funcion(n) for n in TAMANOS]
             print(titulo, nombre, [round(t, 3) for t in tiempos])
             eje.plot(TAMANOS, tiempos, marker="o", label=nombre)
-        eje.set(title=titulo, xlabel="N", ylabel="microsegundos por operacion",
+
+        eje.set(title=titulo + " en el medio", xlabel="Tamaño", ylabel="Microsegundos",
                 xscale="log", yscale="log")
         eje.legend()
+
     figura.tight_layout()
-    figura.savefig("benchmark_listas.png", dpi=150)
+    figura.savefig("benchmark_listas.png")
+    plt.show()
