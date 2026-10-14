@@ -33,24 +33,24 @@ class Nivel(IntEnum):
 
         return colores[self]
 
-    @dataclass
-    class Paciente:
-        nombre: str
-        documento: str
-        edad: int
-        motivo: str
-        nivel: Nivel | None = None
-        hora_llegada: datetime | None = None
+@dataclass
+class Paciente:
+    nombre: str
+    documento: str
+    edad: int
+    motivo: str
+    nivel: Nivel | None = None
+    hora_llegada: datetime | None = None
 
-    @dataclass
-    class SignosVitales:
-        temperatura: float
-        frecuencia_cardiaca: int
-        frecuencia_respiratoria: int
-        saturacion_oxigeno: float
+@dataclass
+class SignosVitales:
+    temperatura: float
+    frecuencia_cardiaca: int
+    frecuencia_respiratoria: int
+    saturacion_oxigeno: float
 
-    @dataclass
-    class Accion:
-        tipo: str
-        paciente_id: str
-        datos: dict
+@dataclass
+class Accion:
+    tipo: str
+    paciente_id: str
+    datos: dict
