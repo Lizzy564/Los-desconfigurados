@@ -61,7 +61,8 @@ def probar_triage(n):
     cola = ColaPrioridadTriage()
 
     pacientes = [
-        PacientePrueba(i, (i % 5) + 1) for i in range(n)
+        PacientePrueba(str(i), (i % 5) + 1)
+        for i in range(n)
     ]
 
     for paciente in pacientes:
@@ -73,7 +74,8 @@ def probar_triage(n):
 def probar_heapq(n):
     monticulo = []
     pacientes = [
-        PacientePrueba(i, (i % 5) + 1) for i in range(n)
+        PacientePrueba(str(i), (i % 5) + 1)
+        for i in range(n)
     ]
 
     for orden, paciente in enumerate(pacientes):
@@ -87,10 +89,10 @@ def probar_heapq(n):
 
 def main():
     tamanos = [1000, 3000, 6000, 10000]
-    resultados = {"ColaDinamica": [],
-                    "collections.deque": [],
-                    "list.pop(0)": [],
-                    }
+    resultados = {"ColaDinamica": [], 
+                  "collections.deque": [], 
+                  "list.pop(0)": [],
+                  }
     print("\nBenchmark: Colas FIFO")
     print("=" *68)
     print("Tiempos en milisegundos; mediana de 3 ejecuciones.\n")
@@ -112,11 +114,11 @@ def main():
 
         print(
             f"{n:>10} "
-            f"{propia:>16.3f} "
+            f"{propia:>16.3f}  "
             f"{tiempo_deque:>14.3f} "
-            f"{tiempo_lista:>16.3f}"
+            f"{tiempo_lista:>16.3f} "
         )
-        
+
     tamanos_triage = [100, 250, 500, 1000]
     tiempos_triage = []
     tiempos_heapq = []
@@ -130,13 +132,9 @@ def main():
     )
 
     for n in tamanos_triage:
-        pacientes = [
-            PacientePrueba(i, (i % 5) + 1)
-            for i in range(n)
-        ]
 
-        tiempo_triage = medir(lambda: probar_triage(pacientes))
-        tiempo_heap = medir(lambda: probar_heapq(pacientes))
+        tiempo_triage = medir(lambda: probar_triage(n))
+        tiempo_heap = medir(lambda: probar_heapq(n))
         tiempos_triage.append(tiempo_triage)
         tiempos_heapq.append(tiempo_heap)
 
