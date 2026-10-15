@@ -61,8 +61,7 @@ def probar_triage(n):
     cola = ColaPrioridadTriage()
 
     pacientes = [
-        PacientePrueba(str(i), (i % 5) + 1)
-        for i in range(n)
+        PacientePrueba(i, (i % 5) + 1) for i in range(n)
     ]
 
     for paciente in pacientes:
@@ -74,8 +73,7 @@ def probar_triage(n):
 def probar_heapq(n):
     monticulo = []
     pacientes = [
-        PacientePrueba(str(i), (i % 5) + 1)
-        for i in range(n)
+        PacientePrueba(i, (i % 5) + 1) for i in range(n)
     ]
 
     for orden, paciente in enumerate(pacientes):
@@ -89,10 +87,10 @@ def probar_heapq(n):
 
 def main():
     tamanos = [1000, 3000, 6000, 10000]
-    resultados = {"ColaDinamica": [], 
-                  "collections.deque": [], 
-                  "list.pop(0)": [],
-                  }
+    resultados = {"ColaDinamica": [],
+                    "collections.deque": [],
+                    "list.pop(0)": [],
+                    }
     print("\nBenchmark: Colas FIFO")
     print("=" *68)
     print("Tiempos en milisegundos; mediana de 3 ejecuciones.\n")
@@ -103,20 +101,17 @@ def main():
         f"{'list.pop(0)':>16}"
         )
 
-    for n in tamanos:
-        propia = medir(lambda: probar_cola_dinamica(n))
-        tiempo_deque = medir(lambda: probar_deque(n))
-        tiempo_lista = medir(lambda: probar_lista(n))
+    for n in tamanos_triage:
+        tiempo_triage = medir(lambda: probar_triage(n))
+        tiempo_heap = medir(lambda: probar_heapq(n))
 
-        resultados["ColaDinamica"].append(propia)
-        resultados["collections.deque"].append(tiempo_deque)
-        resultados["list.pop(0)"].append(tiempo_lista)
+        tiempos_triage.append(tiempo_triage)
+        tiempos_heapq.append(tiempo_heap)
 
         print(
             f"{n:>10} "
-            f"{propia:>16.3f}  "
-            f"{tiempo_deque:>14.3f} "
-            f"{tiempo_lista:>16.3f} "
+            f"{tiempo_triage:>20.3f} "
+            f"{tiempo_heap:>14.3f}"
         )
 
     tamanos_triage = [100, 250, 500, 1000]
@@ -147,7 +142,7 @@ def main():
             f"{tiempo_triage:>20.3f} "
             f"{tiempo_heap:>14.3f}"
         )
-                               
+
     fig, ejes = plt.subplots(1, 2, figsize=(13, 5))
 
     for nombre, tiempos in resultados.items():
