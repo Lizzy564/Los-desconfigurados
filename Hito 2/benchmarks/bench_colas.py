@@ -101,19 +101,22 @@ def main():
         f"{'list.pop(0)':>16}"
         )
 
-    for n in tamanos_triage:
-        tiempo_triage = medir(lambda: probar_triage(n))
-        tiempo_heap = medir(lambda: probar_heapq(n))
+    for n in tamanos:
+        propia = medir(lambda: probar_cola_dinamica(n))
+        tiempo_deque = medir(lambda: probar_deque(n))
+        tiempo_lista = medir(lambda: probar_lista(n))
 
-        tiempos_triage.append(tiempo_triage)
-        tiempos_heapq.append(tiempo_heap)
+        resultados["ColaDinamica"].append(propia)
+        resultados["collections.deque"].append(tiempo_deque)
+        resultados["list.pop(0)"].append(tiempo_lista)
 
         print(
             f"{n:>10} "
-            f"{tiempo_triage:>20.3f} "
-            f"{tiempo_heap:>14.3f}"
+            f"{propia:>16.3f} "
+            f"{tiempo_deque:>14.3f} "
+            f"{tiempo_lista:>16.3f}"
         )
-
+        
     tamanos_triage = [100, 250, 500, 1000]
     tiempos_triage = []
     tiempos_heapq = []
