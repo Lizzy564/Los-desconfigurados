@@ -32,15 +32,15 @@ def clasificar(nodo, respuesta):
     else:
         return clasificar(nodo.no)
 
-def contruir_arbol(spec):
+def construir_arbol(spec):
     """Construir el arbol de decision recursivamente desde un diccionario"""
     if "nivel" in spec:
         return NodoDesicion(nivel=Nivel[spec["nivel"]])
 
     return NodoDesicion(
         pregunta=spec["pregunta"],
-        si=contruir_arbol(spec["si"]),
-        no=contruir_arbol(spec["no"])
+        si=construir_arbol(spec["si"]),
+        no=construir_arbol(spec["no"])
     )
 
 def profundidad(nodo):
