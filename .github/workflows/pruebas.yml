@@ -16,7 +16,24 @@ jobs:
       with:
         python-version: "3.12"
     - name: Instalar dependencias
-      run: pip install pytest
-
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest matplotlib
+    
     - name: Ejecutar pruebas con pytest
       run: python -m pytest
+
+    - name: Ejecutar benchmark de colas
+      run: python benchmarks/bench_colas.py
+
+    - name: Ejecutar benchmark de listas
+      run: python benchmarks/bench_listas.py
+
+    - name: Subir gráficos de benchmarks como artefacto
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: graficos-benchmarks
+        path: |
+          Hito 2/benchmarks/*.png
+          Hito 2/resultados_bench_*.png
