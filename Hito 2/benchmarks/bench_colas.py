@@ -57,8 +57,13 @@ def probar_lista(n):
     for _ in range(n):
         cola.pop(0)
 
-def probar_triage(pacientes):
+def probar_triage(n):
     cola = ColaPrioridadTriage()
+
+    pacientes = [
+        PacientePrueba(str(i), (i % 5) + 1)
+        for i in range(n)
+    ]
 
     for paciente in pacientes:
         cola.encolar(paciente)
@@ -66,8 +71,12 @@ def probar_triage(pacientes):
     while cola.desencolar_siguiente() is not None:
         pass
 
-def probar_heapq(pacientes):
+def probar_heapq(n):
     monticulo = []
+    pacientes = [
+        PacientePrueba(str(i), (i % 5) + 1)
+        for i in range(n)
+    ]
 
     for orden, paciente in enumerate(pacientes):
         heapq.heappush(
