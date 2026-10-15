@@ -1,4 +1,4 @@
-# 1. Justificación de las estructuras de pilas y colas 
+1. Justificación de las estructuras de pilas y colas 
 
 Las pilas siguen el principio LIFO (último en entrar, primero en salir), por lo que nos sirven para implementar la función deshacer acciones.
 
