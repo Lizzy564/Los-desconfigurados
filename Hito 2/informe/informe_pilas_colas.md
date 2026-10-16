@@ -30,3 +30,10 @@ Los tiempos se midieron en milisegundos mediante time.perf_counter(), utilizando
 
 La gráfica generada por el benchmark permite visualizar las diferencias de rendimiento entre las estructuras evaluadas
 
+
+5. Trade-off de la retirada de pacientes
+
+La clase ColaDinamica permite encolar y desencolar elementos en tiempo O(1), gracias a las referencias al frente y al final. Sin embargo, retirar un paciente específico de ColaPrioridadTriage requiere recorrer los elementos de las colas hasta encontrar su identificador, por lo que su complejidad en el peor de los casos es O(n)
+
+Además, se mantiene esta implementación porque conserva el comportamiento FIFO dentro de cada nivel de triage. Como posible mejora futura, se propone integrar una lista doblemente enlazada con referencias derectas a los nodos, lo que permitirá retirar un paciente en O(1) una vez localizado su nodo 
+
