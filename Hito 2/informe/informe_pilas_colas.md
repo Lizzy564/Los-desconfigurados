@@ -22,26 +22,4 @@ Además, se comparó esta implementación con heapq, que organiza los elementos 
 
  4. Resultados de los benchmarks 
 
-Se compararon las siguientes estructuras: 
-- Colas FIFO: ColaDinamica, collections.deque y lost.pop(0), con tamaños de 1.000 a 10.000 elementos 
-
-- Colas de prioridad: ColaPrioridadTriage y heapq, con 100 a 1.000 pacientes
-
-Cada medición se repitió tres veces y se utilizó la mediana de los tiempos en milisegundos 
-
-Los resultados se incorporarán en las siguientes tablas después de ejecutar bench_colas.py 
-
-| Elementos | ColaDinamica (ms) | deque (ms) | list.pop(0) (ms) |
-|---:|---:|---:|---:|
-| 1.000 | Pendiente | Pendiente | Pendiente |
-| 3.000 | Pendiente | Pendiente | Pendiente |
-| 6.000 | Pendiente | Pendiente | Pendiente |
-| 10.000 | Pendiente | Pendiente | Pendiente |
-
-| Pacientes | ColaPrioridadTriage (ms) | heapq (ms) |
-|---:|---:|---:|
-| 100 | Pendiente | Pendiente |
-| 250 | Pendiente | Pendiente |
-| 500 | Pendiente | Pendiente |
-| 1.000 | Pendiente | Pendiente |
 
