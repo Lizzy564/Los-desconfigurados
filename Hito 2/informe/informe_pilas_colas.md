@@ -21,6 +21,7 @@ La cola distribuye los pacientes en cinco niveles de triage. Al solicitar el sig
 Además, se comparó esta implementación con heapq, que organiza los elementos mediante un monticulo de prioridad 
 
  4. Resultados de los benchmarks 
+
 En la primera prueba se comparó la cola dinámica FIFO con collections.deque y una lista convencional que utiliza pop (0), evaluando el tiempo de inserción y extracción para diferentes cantidades de elementos
 
 En la segunda preuba se comparó ColaPrioridadTriage con heapq, utilizando diferentes cantidades de pacientes para observr el comportamiento de ambas implementaciones.
