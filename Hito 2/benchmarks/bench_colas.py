@@ -132,13 +132,9 @@ def main():
     )
 
     for n in tamanos_triage:
-        pacientes = [
-            PacientePrueba(i, (i % 5) + 1)
-            for i in range(n)
-        ]
 
-        tiempo_triage = medir(lambda: probar_triage(pacientes))
-        tiempo_heap = medir(lambda: probar_heapq(pacientes))
+        tiempo_triage = medir(lambda: probar_triage(n))
+        tiempo_heap = medir(lambda: probar_heapq(n))
         tiempos_triage.append(tiempo_triage)
         tiempos_heapq.append(tiempo_heap)
 
@@ -147,7 +143,7 @@ def main():
             f"{tiempo_triage:>20.3f} "
             f"{tiempo_heap:>14.3f}"
         )
-                               
+
     fig, ejes = plt.subplots(1, 2, figsize=(13, 5))
 
     for nombre, tiempos in resultados.items():
